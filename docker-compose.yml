@@ -1,0 +1,17 @@
+services:
+  api: 
+    build: .
+    container_name: api-ex
+    ports:
+      - "5000:80"
+    volumes:
+      - .:/app
+    command: npm run start
+  db: 
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
