@@ -1,12 +1,15 @@
 services:
-  api: 
-    build: .
+  api:
+    build: 
+      context: .
+    restart: always
     container_name: api-ex
     ports:
       - "5000:80"
     volumes:
-      - .:/app
-    command: npm run start
+      - .:/app:rw
+    environment:
+      - port=80
   db: 
     image: mongo:latest
     restart: always

@@ -4,12 +4,12 @@ const router = express.Router();
 
 const Authenticator = require('./authenticator');
 const {
-  register, loginUser, getUser, getAllUsers,
+  register, loginUser, getCurrentUser, getAllUsers,
   updateUser, deleteUser,
 } = require('../src/controllers/user/user.controller');
 
 router.get('/', getAllUsers);
-router.get('/info', Authenticator, getUser);
+router.get('/:username', getCurrentUser);
 
 router.post('/login', loginUser);
 router.post('/register', register);
