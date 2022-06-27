@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 function Authenticate(req, res, next) {
+  // eslint-disable-next-line dot-notation
   const preToken = req.headers['authorization'];
 
   if (!preToken) { return res.status(401).json({ error: true, message: 'Access Denied' }); }

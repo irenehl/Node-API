@@ -21,8 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 const userRoutes = require('./routes/user.router');
+const exerciseRoutes = require('./routes/exercise.router');
 
 app.use('/users', userRoutes);
+app.use('/exercise', exerciseRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

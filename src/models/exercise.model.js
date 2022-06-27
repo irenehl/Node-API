@@ -20,7 +20,7 @@ const exerciseSchema = new Schema({
   },
   time: { type: Number, default: null },
   weight: { type: Number, default: null },
-  repetitions: { type: Number, default: null },
+  repeats: { type: Number, default: null },
   steps: { type: Number, default: null },
   jumps: { type: Number, default: null },
   user: { type: Schema.Types.ObjectId, ref: 'user' },

@@ -129,16 +129,23 @@ const UserController = {
   },
 
   getCurrentUser: async (req, res) => {
-    const user = await User.findOne({ _username: req.user._username });
+    try {
+      const user = await User.findOne({ _id: req.user._id });
 
-    return res.status(200).json(user);
+      return res.status(200).json(user);
+    } catch (err) {
+      const code = err.statusCode == null ? 400 : err.statusCode();
+
+      return res.status(code)
+        .json({ message: err.details != null ? err.details[0].message : err.message });
+    }
   },
 
   deleteUser: async (req, res) => {
     try {
       await User.findOneAndDelete({ _username: req.user._username });
 
-      return res.status(200).json({ error: false, message: `El usuario ${req.user._username} se ha eliminado correctamente` });
+      return res.status(200).json({ error: false, message: 'El usuario se ha eliminado correctamente' });
     } catch (err) {
       const code = err.statusCode == null ? 400 : err.statusCode();
 
